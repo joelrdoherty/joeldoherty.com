@@ -29,7 +29,8 @@ for (const file of files) {
 const required = [
   "index.html", "meetingworth/index.html", "meetingworth/privacy/index.html",
   "accessibility/index.html", "404.html", "assets/styles.css", "assets/app.js",
-  "assets/meetingworth-icon.png", "robots.txt", "sitemap.xml", "_headers", "_redirects"
+  "assets/meetingworth-icon.png", "assets/meetingworth-icon-192.webp",
+  "assets/meetingworth-icon-384.webp", "robots.txt", "sitemap.xml", "_headers", "_redirects"
 ];
 for (const file of required) if (!fs.existsSync(path.join(root, file))) errors.push(`missing ${file}`);
 const sitemap = fs.readFileSync(path.join(root, "sitemap.xml"), "utf8");
