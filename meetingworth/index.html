@@ -15,7 +15,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="/assets/meetingworth-icon-192.png">
   <link rel="apple-touch-icon" href="/assets/meetingworth-icon-192.png">
-  <link rel="stylesheet" href="/assets/styles.css?v=20260916-studio-v2">
+  <link rel="stylesheet" href="/assets/styles.css?v=20261001-build5-guide">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://joeldoherty.com/#joel","name":"Joel Doherty","url":"https://joeldoherty.com/"},{"@type":"SoftwareApplication","name":"MeetingWorth","applicationCategory":"BusinessApplication","operatingSystem":"iOS 17 or later","offers":[{"@type":"Offer","name":"Free","price":"0","priceCurrency":"USD"},{"@type":"Offer","name":"MeetingWorth Pro — Lifetime","price":"14.99","priceCurrency":"USD"}],"author":{"@id":"https://joeldoherty.com/#joel"},"description":"A private, on-device iPhone app for estimating and tracking the financial and time cost of meetings."}]}</script>
 </head>
 <body>
@@ -28,8 +28,8 @@
         <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
       <div class="nav-links" id="nav-links" data-menu>
-        <a href="#apps">Apps</a>
-        <a href="/meetingworth/">MeetingWorth</a>
+        <a href="#quick-start">Quick start</a>
+        <a href="/meetingworth/guide/">Guide &amp; FAQ</a>
         <a href="mailto:heyjoel@joeldoherty.com">Contact</a>
       </div>
     </nav>
@@ -43,7 +43,7 @@
         <p class="hero-deck">MeetingWorth calculates the real cost of a meeting before it starts, while it's happening, and across an entire year. Include prep time, recurring meetings, team hours and salary-based loaded cost without sending your data anywhere.</p>
         <div class="cta-row">
           <a class="button primary" data-app-store>Coming to the App Store</a>
-          <a class="button secondary" href="#calculator">See how it works ↓</a>
+          <a class="button secondary" href="#quick-start">Start with the guide ↓</a>
         </div>
         <p class="privacy-note">No account. No analytics. No cloud. Your data stays on your iPhone.</p>
       </div>
@@ -74,6 +74,23 @@
         <div class="float-metric float-one"><small>Annual cost</small><span data-count>$61,568 / year</span></div>
         <div class="float-metric float-two"><small>Time consumed</small>416 team-hours</div>
         <div class="float-metric float-three"><small>Live rate</small>$19.73 / minute</div>
+      </div>
+    </section>
+
+    <section class="quick-start section" id="quick-start" aria-labelledby="quick-start-title">
+      <div class="container">
+        <div class="quick-start-head reveal">
+          <div><p class="eyebrow">Quick start</p><h2 id="quick-start-title">Turn one meeting into a useful estimate.</h2></div>
+          <p>Start with the meeting you are considering now. MeetingWorth helps you model it, understand the assumptions, and decide what to do next.</p>
+        </div>
+        <ol class="quick-steps">
+          <li class="reveal"><span>01</span><div><h3>Build the estimate</h3><p>Add roles or attendees, duration, recurrence, and optional prep or follow-up time.</p></div></li>
+          <li class="reveal"><span>02</span><div><h3>Read the impact</h3><p>Compare per-meeting cost, annual cost, cost per minute, and team-hours.</p></div></li>
+          <li class="reveal"><span>03</span><div><h3>Explore alternatives</h3><p>Try a shorter duration, fewer attendees, or a different recurrence without changing a saved meeting.</p></div></li>
+          <li class="reveal"><span>04</span><div><h3>Run it live</h3><p>Load the estimate into Live Timer. The rates at launch stay fixed for that timer run.</p></div></li>
+          <li class="reveal"><span>05</span><div><h3>Share the useful part</h3><p>Show aggregate impact without exposing individual names, salaries, or rates.</p></div></li>
+        </ol>
+        <div class="quick-start-action reveal"><a class="button primary" href="/meetingworth/guide/">Read the complete guide &amp; FAQ →</a><p>Includes saved-rate behavior, device backup details, Free and Pro, and purchase restoration.</p></div>
       </div>
     </section>
 
@@ -148,7 +165,7 @@
         </article>
 
         <article class="feature reveal">
-          <div class="feature-copy"><p class="eyebrow">Live Timer</p><h3>Yes, it counts while everyone argues about the agenda.</h3><p>Start the timer and MeetingWorth calculates the live cost of the meeting in real time. Pause it, stop it, save the result or share an aggregate summary.</p></div>
+          <div class="feature-copy"><p class="eyebrow">Live Timer</p><h3>Yes, it counts while everyone argues about the agenda.</h3><p>Start the timer and MeetingWorth calculates the live cost of the meeting in real time. Pause it, stop it, save the result or share an aggregate summary. A saved meeting loads current linked Team rates, then keeps that rate snapshot for the run.</p></div>
           <div class="product-canvas">
             <div class="ui-panel live-cost"><small>Live meeting cost</small><strong>$486.72</strong><div class="timer">00:24:41</div><div class="ui-row"><span>Cost per minute</span><b>$19.73</b></div><div class="stop-button">STOP</div></div>
           </div>
@@ -162,9 +179,9 @@
         </article>
 
         <article class="feature reveal">
-          <div class="feature-copy"><p class="eyebrow">Team Cost Card</p><h3>Share the number. Keep compensation private.</h3><p>Create an aggregate card with the meeting name, attendee count, duration and total cost. Individual salaries, roles and rates never appear.</p></div>
+          <div class="feature-copy"><p class="eyebrow">Team Cost Card</p><h3>Share the number. Keep compensation private.</h3><p>Create an aggregate card with the meeting name, attendee count, duration, per-meeting cost and—when recurring—annual cost. Individual names, salaries and rates never appear as compensation details.</p></div>
           <div class="product-canvas">
-            <div class="ui-panel team-card"><div class="app-wordmark brand-lockup"><img src="/assets/meetingworth-icon-192.webp" width="30" height="30" loading="lazy" decoding="async" alt="">MeetingWorth</div><h4>Leadership Weekly</h4><small>Weekly</small><div class="team-stats"><div><b>8</b><small>Attendees</small></div><div><b>1 hour</b><small>Duration</small></div></div><div class="big">$1,184</div><small>estimated cost per meeting</small></div>
+            <div class="ui-panel team-card"><div class="app-wordmark brand-lockup"><img src="/assets/meetingworth-icon-192.webp" width="30" height="30" loading="lazy" decoding="async" alt="">MeetingWorth</div><h4>Leadership Weekly</h4><small>Weekly</small><div class="team-stats"><div><b>8</b><small>Attendees</small></div><div><b>1 hour</b><small>Duration</small></div></div><div class="big">$1,184</div><small>estimated cost per meeting</small><div class="annual-card-cost"><b>$61,568</b><small>estimated annual cost</small></div></div>
           </div>
         </article>
 
@@ -188,7 +205,7 @@
       <div class="section-head reveal"><p class="eyebrow">Simple pricing</p><h2 id="pricing-title">Buy it once.</h2><p>Try the core product free. Unlock the full toolset with one purchase. No subscription.</p></div>
       <div class="pricing-grid">
         <article class="price-card reveal"><span class="plan">FREE</span><div class="price">$0</div><ul><li>Unlimited estimates</li><li>Unlimited live timers</li><li>Seeded roles and generic attendees</li><li>Annual cost</li><li>One savings recommendation</li><li>One saved meeting</li><li>Basic sharing</li></ul><span class="no-sub">Useful before you buy.</span></article>
-        <article class="price-card pro reveal"><span class="plan">MEETINGWORTH PRO</span><div class="price">$14.99 <small>lifetime</small></div><ul><li>Complete savings plan</li><li>Team Cost Card</li><li>Additional saved meetings</li><li>Named people and custom roles</li><li>Custom loaded-cost settings</li><li>Custom work-hour settings</li></ul><span class="no-sub">No subscription.</span></article>
+        <article class="price-card pro reveal"><span class="plan">MEETINGWORTH PRO — LIFETIME</span><div class="price">US$14.99 <small>one time</small></div><ul><li>Complete savings plan</li><li>Team Cost Card</li><li>Additional saved meetings</li><li>Named people and custom roles</li><li>Custom loaded-cost settings</li><li>Custom work-hour settings</li></ul><span class="no-sub">No subscription.</span></article>
       </div>
     </section>
 
@@ -206,8 +223,8 @@
   </main>
 
   <footer class="footer">
-    <div class="container"><div class="footer-top"><strong>Joel Doherty</strong><nav class="footer-links" aria-label="Footer navigation"><a href="#apps">Apps</a><a href="/meetingworth/">MeetingWorth</a><a href="/meetingworth/privacy/">Privacy</a><a href="/accessibility/">Accessibility</a><a href="mailto:heyjoel@joeldoherty.com">Contact</a></nav></div><div class="footer-bottom"><span>© <span data-year></span> Joel Doherty.</span><span>Made in Colorado. Probably overthinking something.</span></div></div>
+    <div class="container"><div class="footer-top"><strong>Joel Doherty</strong><nav class="footer-links" aria-label="Footer navigation"><a href="#apps">Apps</a><a href="/meetingworth/">MeetingWorth</a><a href="/meetingworth/guide/">Guide &amp; FAQ</a><a href="/meetingworth/privacy/">Privacy</a><a href="/accessibility/">Accessibility</a><a href="mailto:heyjoel@joeldoherty.com">Contact</a></nav></div><div class="footer-bottom"><span>© <span data-year></span> Joel Doherty.</span><span>Made in Colorado. Probably overthinking something.</span></div></div>
   </footer>
-  <script src="/assets/app.js?v=20260916-studio-v2" defer></script>
+  <script src="/assets/app.js?v=20261001-build5-guide" defer></script>
 </body>
 </html>
