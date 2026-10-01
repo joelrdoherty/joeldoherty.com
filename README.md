@@ -24,3 +24,5 @@ The App Store URL is intentionally unset until the listing is live. Set `APP_STO
 ## Source accuracy
 
 Product claims, pricing and privacy details are derived from the private `joelrdoherty/MeetingMeter` application repository. MeetingWorth is the public product name; the code repository retains the earlier MeetingMeter name.
+
+The public Build 5 support guide is available at `/meetingworth/guide/`. Its five guide sections and five FAQs mirror `MeetingMeter/Views/Settings/HelpSupportContent.swift`; `npm run build` checks those approved strings, navigation, sitemap coverage, JSON-LD, and local assets.
