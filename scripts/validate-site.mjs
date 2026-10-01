@@ -33,6 +33,19 @@ for (const file of files) {
   if (count(/<h1\b/g) !== 1) errors.push(`${rel}: expected one h1, found ${count(/<h1\b/g)}`);
   if (!/<main\b[^>]*id="main-content"[^>]*tabindex="-1"/.test(html) && !/<main\b[^>]*tabindex="-1"[^>]*id="main-content"/.test(html)) errors.push(`${rel}: missing focusable main landmark`);
   if (!/class="skip-link"/.test(html)) errors.push(`${rel}: missing skip link`);
+  if (!/<a class="studio-mark" href="\/">[\s\S]*studio-logo-header\.png[\s\S]*alt="Joel Doherty — Independent Software Studio">[\s\S]*<\/a>/.test(html)) errors.push(`${rel}: missing accessible studio header logo`);
+  if (!html.includes('media="(max-width: 680px)" srcset="/assets/studio-logo-header-mobile-320.webp 320w, /assets/studio-logo-header-mobile-640.webp 640w"')) errors.push(`${rel}: missing readable mobile studio lockup`);
+  if (!/<a class="footer-brand" href="\/">[\s\S]*studio-logo-footer\.png[\s\S]*alt="Joel Doherty — Independent Software Studio">[\s\S]*<\/a>/.test(html)) errors.push(`${rel}: missing accessible studio footer logo`);
+  for (const icon of [
+    'href="/favicon.ico?v=20261001-studio-brand"',
+    'href="/assets/favicon-32.png?v=20261001-studio-brand"',
+    'href="/assets/favicon-192.png?v=20261001-studio-brand"',
+    'href="/apple-touch-icon.png?v=20261001-studio-brand"',
+    'href="/site.webmanifest?v=20261001-studio-brand"'
+  ]) {
+    if (!html.includes(icon)) errors.push(`${rel}: missing studio icon link ${icon}`);
+  }
+  if (/<link rel="(?:icon|apple-touch-icon)"[^>]+meetingworth-icon/.test(html)) errors.push(`${rel}: product icon must not be the site favicon`);
 
   for (const match of html.matchAll(/<script[^>]+type="application\/ld\+json"[^>]*>(.*?)<\/script>/gs)) {
     try { JSON.parse(match[1]); }
@@ -71,6 +84,11 @@ const required = [
   "accessibility/index.html", "404.html",
   "assets/styles.css", "assets/app.js", "assets/meetingworth-icon.png",
   "assets/meetingworth-icon-192.webp", "assets/meetingworth-icon-384.webp",
+  "assets/studio-logo-header.png", "assets/studio-logo-header-320.webp", "assets/studio-logo-header-640.webp",
+  "assets/studio-logo-header-mobile.png", "assets/studio-logo-header-mobile-320.webp", "assets/studio-logo-header-mobile-640.webp",
+  "assets/studio-logo-footer.png", "assets/studio-logo-footer-380.webp", "assets/studio-logo-footer-760.webp",
+  "assets/favicon-32.png", "assets/favicon-192.png", "assets/favicon-512.png",
+  "favicon.ico", "apple-touch-icon.png", "site.webmanifest",
   "robots.txt", "sitemap.xml", "_headers", "_redirects"
 ];
 for (const file of required) if (!fs.existsSync(path.join(root, file))) errors.push(`missing ${file}`);
