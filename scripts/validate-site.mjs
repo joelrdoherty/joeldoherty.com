@@ -67,7 +67,8 @@ for (const file of files) {
 
 const required = [
   "index.html", "meetingworth/index.html", "meetingworth/guide/index.html",
-  "meetingworth/privacy/index.html", "accessibility/index.html", "404.html",
+  "meetingworth/privacy/index.html", "meetingworth/terms/index.html",
+  "accessibility/index.html", "404.html",
   "assets/styles.css", "assets/app.js", "assets/meetingworth-icon.png",
   "assets/meetingworth-icon-192.webp", "assets/meetingworth-icon-384.webp",
   "robots.txt", "sitemap.xml", "_headers", "_redirects"
@@ -78,7 +79,8 @@ const sitemap = fs.readFileSync(path.join(root, "sitemap.xml"), "utf8");
 for (const url of [
   "https://joeldoherty.com/", "https://joeldoherty.com/meetingworth/",
   "https://joeldoherty.com/meetingworth/guide/",
-  "https://joeldoherty.com/meetingworth/privacy/", "https://joeldoherty.com/accessibility/"
+  "https://joeldoherty.com/meetingworth/privacy/",
+  "https://joeldoherty.com/meetingworth/terms/", "https://joeldoherty.com/accessibility/"
 ]) {
   if (!sitemap.includes(url)) errors.push(`sitemap missing ${url}`);
 }
@@ -113,6 +115,26 @@ if (!landing.includes("estimated annual cost")) errors.push("Team Cost Card illu
 if (!landing.includes("keeps that rate snapshot for the run")) errors.push("landing missing timer snapshot behavior");
 if (!appJS.includes('const APP_STORE_URL = "";')) errors.push("App Store URL must remain unset before submission");
 if (/apps\.apple\.com|itunes\.apple\.com/.test(`${landing}\n${guide}\n${appJS}`)) errors.push("premature App Store link found");
+
+const terms = fs.readFileSync(path.join(root, "meetingworth/terms/index.html"), "utf8");
+for (const text of [
+  "Published for pre-launch review; may be updated before launch.",
+  "not payroll calculations, invoices, accounting records",
+  "They do not promise or guarantee cash savings",
+  "MeetingWorth Pro — Lifetime",
+  "one-time, non-consumable in-app purchase",
+  "It is not a subscription.",
+  "does not provide its own account, cloud database, synchronization, export, or recovery service",
+  "Standard Licensed Application End User License Agreement",
+  "Nothing in these Terms excludes any warranty, guarantee, remedy, or consumer right that cannot lawfully be excluded or limited.",
+  "Changes apply prospectively"
+]) {
+  if (!terms.includes(text)) errors.push(`terms coverage: missing required text: ${text}`);
+}
+for (const source of [landing, guide, terms]) {
+  if (!source.includes('href="/meetingworth/privacy/"')) errors.push("MeetingWorth page missing Privacy link");
+  if (!source.includes('href="/meetingworth/terms/"')) errors.push("MeetingWorth page missing Terms link");
+}
 
 if (errors.length) {
   console.error(errors.join("\n"));
