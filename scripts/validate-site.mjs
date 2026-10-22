@@ -156,7 +156,7 @@ for (const file of files) {
 
 const terms = fs.readFileSync(path.join(root, "meetingworth/terms/index.html"), "utf8");
 for (const text of [
-  "Published for pre-launch review; may be updated before launch.",
+  "Effective October 1, 2026",
   "not payroll calculations, invoices, accounting records",
   "They do not promise or guarantee cash savings",
   "MeetingWorth Pro — Lifetime",
