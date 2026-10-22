@@ -106,6 +106,8 @@ for (const url of [
 const landing = fs.readFileSync(path.join(root, "meetingworth/index.html"), "utf8");
 const guide = fs.readFileSync(path.join(root, "meetingworth/guide/index.html"), "utf8");
 const appJS = fs.readFileSync(path.join(root, "assets/app.js"), "utf8");
+const home = fs.readFileSync(path.join(root, "index.html"), "utf8");
+const appStoreURL = "https://apps.apple.com/app/id6811099118";
 const guideSections = [
   ["Build your first Estimate", "Choose attendees, set the meeting length and recurrence, then review the estimate before the meeting earns a place on the calendar.", "Use role presets or generic attendees. MeetingWorth Pro also unlocks named people and custom roles.", "Optional prep and follow-up time is included in the per-meeting estimate.", "Try Explore Savings to compare practical alternatives without changing your saved meeting."],
   ["Understand the numbers", "MeetingWorth multiplies each attendee’s loaded hourly cost by their meeting time, then totals the group.", "Loaded hourly cost estimates pay plus taxes, benefits, and overhead using the selected multiplier and annual work hours.", "Per-meeting cost includes scheduled time and any prep or follow-up time.", "Annual cost applies the meeting’s recurrence to the same per-meeting assumptions."],
@@ -131,8 +133,26 @@ if (!landing.includes('href="/meetingworth/guide/"')) errors.push("landing missi
 if (!landing.includes("US$14.99") || !guide.includes("US$14.99")) errors.push("pricing must state US$14.99");
 if (!landing.includes("estimated annual cost")) errors.push("Team Cost Card illustration missing annual cost");
 if (!landing.includes("keeps that rate snapshot for the run")) errors.push("landing missing timer snapshot behavior");
-if (!appJS.includes('const APP_STORE_URL = "";')) errors.push("App Store URL must remain unset before submission");
-if (/apps\.apple\.com|itunes\.apple\.com/.test(`${landing}\n${guide}\n${appJS}`)) errors.push("premature App Store link found");
+if (!appJS.includes(`const APP_STORE_URL = "${appStoreURL}";`)) errors.push("App Store URL is missing or incorrect in app.js");
+for (const [label, source] of [["homepage", home], ["landing", landing], ["guide", guide]]) {
+  const ctas = [...source.matchAll(/<a\b[^>]*\bdata-app-store\b[^>]*>[\s\S]*?<\/a>/g)].map((match) => match[0]);
+  if (ctas.length !== 1) errors.push(`${label}: expected one App Store CTA, found ${ctas.length}`);
+  for (const cta of ctas) {
+    if (!cta.includes(`href="${appStoreURL}"`)) errors.push(`${label}: App Store CTA lacks a no-JS fallback URL`);
+    if (!cta.includes("Download on the App Store")) errors.push(`${label}: App Store CTA has incorrect label`);
+    if (/disabled|aria-disabled/.test(cta)) errors.push(`${label}: App Store CTA must be enabled`);
+  }
+  if (!source.includes("/assets/app.js?v=20261021-app-store-launch")) errors.push(`${label}: App Store script cache-buster is stale`);
+}
+if (/Coming to the App Store/.test(`${home}\n${landing}\n${guide}\n${appJS}`)) errors.push("pre-launch App Store CTA copy remains");
+if (!home.includes('<span class="product-status">AVAILABLE NOW</span><h3>MeetingWorth</h3>')) errors.push("homepage MeetingWorth status is not live");
+if (!landing.includes('<span class="product-status">AVAILABLE NOW</span><h3>MeetingWorth</h3>')) errors.push("landing MeetingWorth status is not live");
+for (const file of files) {
+  const html = fs.readFileSync(file, "utf8");
+  if (html.includes("/assets/app.js") && !html.includes("/assets/app.js?v=20261021-app-store-launch")) {
+    errors.push(`${path.relative(root, file)}: App Store script cache-buster is stale`);
+  }
+}
 
 const terms = fs.readFileSync(path.join(root, "meetingworth/terms/index.html"), "utf8");
 for (const text of [

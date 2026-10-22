@@ -1,4 +1,4 @@
-const APP_STORE_URL = "";
+const APP_STORE_URL = "https://apps.apple.com/app/id6811099118";
 
 const money = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -50,16 +50,10 @@ if (calculator) {
 }
 
 document.querySelectorAll("[data-app-store]").forEach((link) => {
-  if (APP_STORE_URL) {
-    link.href = APP_STORE_URL;
-    link.textContent = "Download on the App Store";
-    link.classList.remove("disabled");
-  } else {
-    link.removeAttribute("href");
-    link.textContent = "Coming to the App Store";
-    link.classList.add("disabled");
-    link.setAttribute("aria-disabled", "true");
-  }
+  link.href = APP_STORE_URL;
+  link.textContent = "Download on the App Store";
+  link.classList.remove("disabled");
+  link.removeAttribute("aria-disabled");
 });
 
 const menuButton = document.querySelector("[data-menu-toggle]");

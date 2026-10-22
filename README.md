@@ -19,7 +19,7 @@ The repository is deployed as a static site on Cloudflare Pages.
 - Build command: `npm run build`
 - Output directory: `/` (repository root)
 
-The App Store URL is intentionally unset until the listing is live. Set `APP_STORE_URL` in `assets/app.js` when available.
+The live MeetingWorth App Store CTA points to `https://apps.apple.com/app/id6811099118`. Keep the same URL in the HTML fallback links and `APP_STORE_URL` in `assets/app.js`.
 
 ## Source accuracy
 
